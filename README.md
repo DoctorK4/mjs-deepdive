@@ -4,9 +4,9 @@
 
 ## 참여자
 
-|   ![](https://github.com/doctork4.png?size=100)    | ![](https://github.com/hyunwlee-dev.png?size=100)  | ![]() | ![]() |
-|:------------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|
-|         [김동률](https://github.com/doctork4)         |       [이현우](https://github.com/hyunwlee-dev)       |      [강예슬]()       |      [정연준]()       |
+|   ![](https://github.com/doctork4.png?size=100)    | ![](https://github.com/hyunwlee-dev.png?size=100)  | ![](https://github.com/yheseul.png) | ![](https://github.com/Chadolbaegi128.png?size=100) | ![](https://github.com/lucia0929.png) |
+|:------------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|
+|         [김동률](https://github.com/doctork4)         |       [이현우](https://github.com/hyunwlee-dev)       |      [강예슬](https://github.com/yheseul)       |      [정연준](https://github.com/Chadolbaegi128)       |      [홍서진](https://github.com/lucia0929)       |
 
 
 
