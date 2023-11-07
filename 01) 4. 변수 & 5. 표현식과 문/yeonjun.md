@@ -36,7 +36,7 @@
 - **변수 선언**(**variable declaration**)은 변수를 생성한다는 의미도 있지만 값을 저장하기 위한 메모리를 확보(**allocate**)하고 변수명과 확보된 메모리 공간의 주소를 연결(**name binding**)해서 값을 저장할 수 있게 준비하는 것도 의미한다.
 - 변수 선언에 의해 확보된 메모리 공간은 해제(**release**)되기 전까지 보호된다.
 - JavaScript에서는 var, let, const 키워드를 사용해서 변수를 선언해야 한다.
-- ES5 버전까지는 var 키워드 하나만 쓰여졌지만 ES6 버전이 등장한 이후로는 var, let 키워드도 같이 쓰여지고 있다.
+- ES5 버전까지는 var 키워드 하나만 쓰여졌지만 ES6 버전이 등장한 이후로는 var, let, const 키워드도 같이 쓰여지고 있다.
 (var 키워드의 문제점은 15-1절 "var 키워드로 선언한 변수의 문제점" **참고**)
 - var 키워드로 변수를 선언한 이후, 변수에 값을 할당하지 않으면 해당 변수가 가리키는 메모리 공간에는 JavaScript 엔진에 의해 undefined라는 값이 암묵적으로 할당되어 초기화된다.
 (undefined는 JavaScript에서 제공하는 원시 타입의 값이다 => primitive type/자세한 내용은 6장 "데이터 타입"을 **참고**)
@@ -50,7 +50,113 @@
 - 변수 선언시 초기화 단계를 무시할 경우 다른 프로그램에서 사용했던 쓰레기 값(garbage value)이 남아있을 수 있다.
 - 선언하지 않은 식별자에 접근하면 **ReferenceError**(**참조 에러**)가 발생한다.JavaScript 엔진이 등록된 식별자를 찾을 수 없을 때 발생하는 에러다.
 
-### 4-4 변수 선언의 실행 시점과 변수 호이스팀
+### 4-4 변수 선언의 실행 시점과 변수 호이스팅
+```javascript
+console.log(score); // undefined
 
+var score; // 변수 선언문
+```
+- **변수 선언은 소스코드가 한 줄씩 순차적으로 실행되는 시점, 즉 런타임(runtime)이 아니라 이전 단계에서 실행된다.**
+
+- 이처럼 변수 선언문이 코드의 최상단으로 끌어 올려진 것처럼 동작하는 JavaScript 고유의 특징을 **변수 호이스팅**(**variable hoisting**)이라고 부른다.
+
+- var, let, const 같은 변수 선언 키워드와  function, function*(generator 함수 정의 키워드), class 키워드를 사용해서 만든 모든 식별자에서도 호이스팅이 적용된다.
+
+### 4-5 값의 할당
+- 변수에 값을 할당한다는 것은 우변의 값을 좌변의 변수에 할당하는 것이다.
+
+- 할당 연산자 '='을 사용해서 변수에 값을 할당한다. 변수 선언의 값과 할당을 하나의 문(statement)으로 줄여서 표현할 수 있다.
+```javascript
+var score; // 값 할당
+score = 80;
+
+var score2 = 160; // 변수 선언의 값과 할당 하나의 문으로 줄여 표현
+```
+
+- JavaScript 엔진은 변수 선언과 값의 할당을 2개의 문으로 나누어 각각 실행한다.
+
+- **값의 할당은 변수 선언과 달리 소스코드가 순차적으로 실행되는 시점인 런타임에 실행된다.**
+
+
+```javascript
+console.log(score); // undefined
+
+var score; // 1) 변수 선언
+score = 80; // 2) 값의 할당
+
+console.log(score); // 80
+
+console.log(score2); // undefined
+
+var score2 = 80; // 변수 선언과 값의 할당
+
+console.log(score2); // 80
+```
+- undefined가 저장되어 있던 'score' 변수가 기존에 가리키던 메모리 주소 대신 새로운 메모리 공간을 확보해서 그 공간에 80을 집어넣은 다음 그 메모리 주소값을 'score' 변수에 저장하는 것이다.
+
+### 4-6 값의 재할당
+```javascript
+var score = 80; // 변수 선언과 값의 할당
+score = 90; // 값의 재할당
+
+let score2 = 160;
+score2 = 50;
+```
+- var 키워드나 let 키워드로 선언한 변수는 값을 재할당할 수 있다.
+- const 키워드로 선언한 변수에 저장된 값은 **상수**(**constant**)라고 부른다. 해당 키워드로 변수를 선언할 경우 반드시 값을 할당해야 하며 한 번 할당한 값은 재할당이 불가능하다. 상수는 변하지 않는 값을 의미한다.
+예시)
+```javascript
+const score = 80;
+score = 10;
+/*
+    Uncaught TypeError: Assignment to constant variable
+*/
+```
+- 값의 할당 또는 값의 재할당으로 아무 식별자와 연결되지 않는 값들은 JavaScript 엔진에 내장된 **가비지 콜렉터**(**garbage collector**)에 의해서 메모리에서 자동 해제된다.
+* 가비지 콜렉터: 프로그램이 할당한(allocate) 메모리 공간을 주기적으로 검사하여 더 이상 사용하지 않는 메모리를 해제(release) 하는 기능을 의미한다. 더 이상 사용되지 않는 메모리란 간단히 말하자면 어떤 식별자도 참조하지(값에 접근) 않는 메모리 공간을 의미한다. JavaScript는 가비지 콜렉터를 내장하고 있는 매니지드 언어로서 가비지 콜렉터를 통해 메모리 누수를 방지한다.
+* 매니지드 언어(managed language): 특정 런타임 환경(실행 환경) 내에서, 프로그램을 생성하도록 설계된 언어를 의미한다. 주로 인터프리터 언어나 VM(Virtual Machaine)을 지원하는 언어를 통해서 만들어진 프로그램의 코드가 이 위에서 동작하도록 설계되어 있다. Python, JavaScript, Java, C# 등등의 언어가 여기에 해당한다.
+[참고_링크1](https://algorfati.tistory.com/113)
+* 메모리 누수(memory leak): 부주의 또는 일부 프로그램 오류로 인해 더 사용되지 않는 메모리를 해제하지 못하는 현상을 의미한다. 사용되지 않는 데이터가 수동 또는 자동으로 해제되지 않아 계속 메모리를 점유하게 된다면 여기에 해당한다고 볼 수 있다.
+[참고_링크2](https://ui.toast.com/posts/ko_20210611)
+
+### 4-7 식별자 네이밍 규칙
+- 식별자는 특수문자를 제외한 문자, 숫자, 언더스코어(_), 달러 기호($)를 포함할 수 있다.
+- 식별자는 특수문자를 제외한 문자, 언더스코어(_), 달러 기호($)로 시작해야 한다. 숫자로 시작할 수는 없다.
+- ES5 버전부터는 식별자에 유니코드 문자도 사용이 가능해져서 알파벳 외의 한글이나 일본어 식별자도 사용할 수 있지만 권장하지 않는다.
+[참고_링크3](https://ko.wikipedia.org/wiki/%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C)
+- JavaScript에서는 대소문자를 구별하므로 다음 변수는 각각 별개의 변수로 취급된다.
+```javascript
+let firstname;
+let firstName;
+let FIRSTNAME;
+```
+- 좋은 식별자는 존재 목적을 쉽게 이해할 수 있도록 의미를 명확히 표현해야 한다. 좋은 식별자는 코드의 가독성을 높인다.
+- 예약어는 식별자로 사용할 수 없다.
+[참고_링크4: JavaScript 예약어 모음](https://www.w3schools.com/js/js_reserved.asp)
+-네이밍 컨벤션(naming convention)은 하나 이상의 영어 단어로 구성된 식별자를 만들 때 가독성 좋게 단어를 한눈에 구분하기 위해 규정한 명명 규칙이다.
+```javascript
+// 카멜 케이스(camelCase)
+let firstName;
+
+// 스네이크 케이스(snake_case)
+let first_name;
+
+// 파스칼 케이스(PascalCase)
+let FirstName;
+
+// 헝가리안 케이스(typeHungarianCase)
+let strFirstName; // type + identifier
+let $elem = document.getElementById('myId'); // DOM 노드
+let observable$ = fromEvent(document, 'click'); // RxJS 옵저버블
+``` 
+- 통상적으로 변수나 함수 이름에는 카멜 케이스를 사용하고, 생성자 함수/클래스는 파스칼 케이스를 이용해서 이름을 짓는다. ECMAScript에 정의된 객체와 함수들도 카멜 케이스와 파스칼 케이스를 따르고 있다.
 
 ## 5. 표현식과 문
+
+### 5-1 값
+- **값**(**value**)은 식(표현식)이 평가(evaluate)되어 생성된 결과를 의미한다.
+- **평가**는 식을 해석해서 값을 생성하거나 참조(접근)하는 것을 의미한다.
+```javascript
+// 10 + 20dms 평가되어 숫자 값 30을 생성한다.
+10 + 20; // 30
+```
