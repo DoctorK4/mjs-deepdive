@@ -534,6 +534,6 @@ console.log(a, b, c); // 0 0 0
 
     - JavaScript에서는 양의 0과 음의 0이 있는데 이들을 비교하면 true를 반환한다.
     ```javascript
-    console.log(0 === -0);
-    console.log(0 === 0);
+    console.log(0 === -0); // true
+    console.log(0 === 0); // true
     ```
