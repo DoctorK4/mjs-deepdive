@@ -198,7 +198,7 @@ second = null;
 ```
 > [참고_링크2: undefined 타입 & null 타입 차이점](https://hanamon.kr/javascript-undefined-null-%EC%B0%A8%EC%9D%B4%EC%A0%90/)
 
-### 6.7 심벌 타입
+### 6-7 심벌 타입
 - 심벌(symbol)은 ES6 버전에서 추가된 7번째 원시 타입으로, 변경 불가능한 타입의 값이다.
 - 심벌 타입의 값은 다른 값과 중복이 불가능한 유일무이한 값이다. 그래서 이름이 충돌할 위험이 없는 객체의 유일한 프로퍼티 키를 만들기 위해 사용한다.
 - 본래 원시 타입들은 리터럴을 통해 값을 생성하지만, 심벌 타입만 유일하게 Symbol 함수를 통해 값을 생성한다.
@@ -216,20 +216,20 @@ state[first] = 'value';
 console.log(state[first]); // value
 ```
 
-### 6.8 객체 타입
+### 6-8 객체 타입
 - JavaScript에서는 원시 타입을 제외한 모든 데이터의 타입은 객체 타입이다.
 - JavaScript는 객체 기반의 언어이며, JavaScript를 이루고 있는 거의 모든 것이 객체라고 볼 수 있다.
 
-### 6.9 데이터 타입의 필요성
+### 6-9 데이터 타입의 필요성
 - 데이터 타입이 있어야 되는 이유
     - 데이터 타입에 따라 메모리 공간의 크기가 결정되면 불필요하게 메모리 공간을 사용하지 않아도 된다.
-    - 메모리 공간에 저장된 값을 참조할 경우 한 번에 읽어들일 때 필요한 메모리 공간의 크기를 정할 수 있다.
+    - 메모리 공간에 저장된 값을 참조할(접근할) 경우 한 번에 읽어들일 때 필요한 메모리 공간의 크기를 정할 수 있다.
     - 메모리에서 읽어 들이 2진수를 어떻게 해석할지 결정할 수 있다.
 > 컴파일러 또는 인터프리터는 심벌 테이블(symbol table)이라고 부르는 자료 구조를 통해 식별자를 키로 바인딩된 값의 메모리 주소, 데이터 타입, 스코프 등을 관리한다.
 
 > [참고_링크3: 심벌 테이블](https://ko.wikipedia.org/wiki/%EC%8B%AC%EB%B3%BC_%ED%85%8C%EC%9D%B4%EB%B8%94)
 
-### 6.10 동적 타이핑
+### 6-10 동적 타이핑
 - JavaScript는 인터프리터 + 동적 타입 언어(dynamic type/weak type)이다.
     - C언어,C++ 같은 정적 타입 언어(static type/strong type)과 달리 변수를 선언할 때 타입을 선언하지 않는다.
     - JavaScript의 변수(메모리 공간)는 어떠한 데이터 타입의 값이라도 자유롭게 할당할 수 있다.
@@ -280,3 +280,260 @@ console.log(state[first]); // value
 ## 7. 연산자
 
 ### 7-1 산술 연산자
+- 산술 연산자(arithmetic operator): **피연산자를 대상으로 수학적 계산을 수행해 새로운 값을 만드는 연산자**
+- 산술 연산자를 통해 연산이 불가능한 경우 **NaN**을 반환한다.
+> NaN(Not-a-Number): 숫자 타입으로 연산이 불가능한 데이터를 의미한다. NaN 표기법은 JavaScript 고유의 표기법이 아니라 IEEE(국제 전기전자공학자협회)에서 컴퓨터 부동소수점 표기를 규정한 IEEE 754에서 나온 것이다.
+
+> [참고_링크4: NaN](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/NaN)
+
+> [참고_링크5: IEEE_754](https://ko.wikipedia.org/wiki/IEEE_754)
+
+- 산술 연산자는 피연산자의 갯수에 따라 이항 산술 연산자와 단항 산술 연산자로 구분할 수 있다.
+    - 이항 산술 연산자(binary arithmetic operator): **2개의 피연산자를 산술 연산하여 숫자 값을 만드는 연산자**
+    > 이항 산술 연산자의 종류
+
+    | 이항 산술 연산자 | 의미 | 부수 효과 | 
+    | -:- | -:- | -:- |
+    | + | 덧셈 | X |
+    | - | 뺄셈 | X |
+    | * | 곱셈 | X |
+    | / | 나눗셈 | X |
+    | % | 나머지 | X |
+    ```javascript
+    5 + 2; // 7
+    5 - 2; // 3
+    5 * 2; // 10
+    5 / 2; // 2.5
+    5 % 2; // 1
+    ```
+
+    - 단항 산술 연산자(unary arithmetic operator): **1개의 피연산자를 산술 연산하여 숫자 값을 만드는 연산자**
+    > 단항 산술 연산자의 종류
+
+    | 단항 산술 연산자 | 의미 | 부수 효과 | 
+    | -:- | -:- | -:- |
+    | ++ | 증가 | O |
+    | -- | 감소 | O |
+    | + | 특별한 효과가 없다. | X |
+    | - | 양수를 음수로, 음수를 양수로 반전한 값을 반환한다. | X |
+
+    - 단항 산술 연산자에서 **증가/감소 연산자는 피연산자의 값을 변경하는 부수 효과(side effect)가 있다(암묵적 할당)**
+    ```javascript
+    let a = 1;
+
+    // 증가(++) 연산자는 피연산자의 값을 변경하는 암묵적 할당이 이뤄진다.
+    a++; // a = a + 1;
+    console.log(a); // 2
+
+    // 감소(--) 연산자는 피연산자의 값을 변경하는 암묵적 할당이 이뤄진다.
+    a--; // a = a - 1;
+    console.log(a); // 1
+    ```
+
+    - 증가/감소 연산자는 위치에 따라 연산 과정이 달라진다.
+        - 피연산자 앞에 위치한 **전위 증가/감소 연산자**(**prefix increment/decrement operator**)는 먼저 피연산자의 값을 증가/감소시킨 후, 다른 연산을 수행한다.
+        - 피연산자 뒤에 위치한 **후위 증가/감소 연산자**(**postfix increment/decrement operator**)는 먼저 다른 연산을 수행한 후, 피연산자의 값을 증가/감소시킨다.
+    ```javascript
+    let foo = 5;
+    let result;
+
+    // 선할당 후증가(postfix increment operator)
+    result = foo++;
+    console.log(result, foo); // 5 6
+
+    // 선증가 후할당(prefix increment operator)
+    result = ++foo;
+    console.log(result, foo); // 7 7
+
+    // 선할당 후감소(postfix decrement operator)
+    result = foo--;
+    console.log(result); // 7 6
+
+    //  선감소 후할당(prefix decrement operator)
+    result = --foo;
+    console.log(result); // 5 5
+    ```
+
+    - + 단항 연산자는 피연산자에 특별한 효과를 주지 않지만 숫자 타입이 아닌 피연산자에 적용할 경우 해당 피연산자를 숫자 타입으로 변환하여 반환한다.
+    ```javascript
+    let test = '1';
+    // 문자열을 숫자로 타입 변환한다.
+    console.log(+test); // 1
+    // 부수 효과는 없다.
+    console.log(test); // "1"
+
+    // 불리언 값을 숫자 값으로 타입 변환한다.
+    test = true;
+    console.log(+test); // 1
+    // 부수 효과는 없다.
+    console.log(test); // true
+
+    test = false;
+    console.log(+test); // 0
+    // 부수 효과는 없다.
+    console.log(test); // false
+
+    // 숫자가 아닌 문자열은 숫자로 타입 변환할 수 없으므로 NaN(Not-a-Number)을 반환한다.
+    test = 'Hi';
+    console.log(+test); // NaN
+    // 부수 효과는 없다.
+    console.log(test); // 'Hi'
+    ```
+
+    - - 단항 연산자는 피연산자의 부호를 반전한 값을 반환한다. + 단항 연산자와 마찬가지로 숫자 타입이 아닌 피연산자에 적용할 경우 해당 피연산자를 숫자 타입으로 변환하여 반환한다.
+    ```javascript
+    // 부호를 반전한다.
+    console.log(-(-10)); // 10
+
+    // 문자열 숫자로 타입 변환한다.
+    console.log(-'0b0101'); // 5
+
+    // 불리언 값을 숫자로 타입 변환한다.
+    console.log(-true); // -1
+
+    // 문자열은 숫자로 타입 변환할 수 없으므로 NaN을 반환한다.
+    console.log(-'Hello'); // NaN
+    ```
+
+    - 1개 이상의 피연산자가 문자열일 경우 + 연산자가 문자열 연결 연산자로 동작한다. + 연산자가 아닌 이항 연산자나 피연산자가 모두 숫자 타입일 경우 산술 연산자로 동작한다.
+    ```javascript
+    // 문자열 연결 연산자
+    console.log('1' + 2); // "12"
+
+    // true에 숫자 값을 더할 경우 1로 타입이 변환된다.
+    console.log(23 + true); // 24
+
+    // false는 0으로 타입 변환된다.
+    console.log(-1 + false); // -1
+
+    // null은 0으로 타입 변환된다.
+    console.log(2 + null); // 2
+
+    // undefined는 숫자로 타입 변환되지 않는다.
+    console.log(+undefined); // NaN
+    console.log(34.5 + undefined); // NaN
+    ```
+
+    - JavaScript 엔진은 개발자의 의도와는 상관없이 암묵적으로 타입을 자동으로 변환한다. 이것을 **암묵적 타입 변환**(**implicit coercion**) 또는 **타입 강제 변환**(**type coercion**)이라고 한다. 
+
+### 7-2 할당 연산자
+- 할당 연산자(assignment operator): **우항에 있는 피연산자의 평가 결과(값)를 좌항에 있는 변수에 할당하는 연산자**
+- 할당 연산자는 좌항의 변수에 값을 할당하므로 변수 값이 변하는 부수 효과가 있다.
+> 할당 연산자의 종류
+
+| 할당 연산자 | 예 | 동일 표현 | 부수 효과 | 
+| -:- | -:- | -:- | -:- |
+| = | x = 5 | x = 5 | O |
+| += | x += 5 | x = x + 5 | O |
+| -= | x -= 5 | x = x - 5 | O |
+| *= | x *= 5 | x = x * 5 | O |
+| /= | x /= 5 | x = x / 5 | O |
+| %= | x %= 5 | x = x % 5 | O |
+
+```javascript
+let x;
+
+x = 10;
+console.log(x); // 10
+
+x += 5; // x = x + 5;
+console.log(x); // 15
+
+x -= 5; // x = x - 5;
+console.log(x); // 10
+
+x *= 5; // x = x * 5;
+console.log(x); // 50
+
+x /= 5; // x = x / 5;
+console.log(x); // 10
+
+x %= 5; // x = x % 5;
+console.log(x); // 0
+
+let str = 'My name is ';
+
+// 문자열 연결 연산자
+str += 'Yeonjun'; // str = str + "Yeonjun";
+console.log(str); // "My name is Yeonjun"
+
+```
+
+- 할당문은 값으로 평가되는 표현식인 문으로서 할당된 값으로 평가된다.
+```javascript
+let a;
+let b;
+let c;
+
+// 연쇄 할당. 오른쪽에서 왼쪽으로 진행
+// 1) c = 0 : 0으로 평가된다.
+// 2) b = 0 : 0으로 평가된다.
+// 3) a = 0 : 0으로 평가된다.
+a = b = c = 0;
+
+console.log(a, b, c); // 0 0 0
+```
+
+### 7-3 비교 연산자
+- 비교 연산자(comparison operator): **좌항과 우항의 피연산자를 비교한 다음 그 결과를 불리언 값으로 반환하는 연산자**. 비교 연산자는 if 문이나 for 문과 같은 제어문의 조건식에서 주로 사용한다.
+
+- 동등/일치 비교 연산자
+    - 동등 비교 연산자(loose equally operator)와 일치 비교 연산자(strict equally operator)는 좌항과 우항의 피연산자가 같은 값으로 평가되는 비교해 불리언 값을 반환한다.
+    - 동등 비교 연산자는 느슨한 비교(**loose**)를 하지만 일치 비교 연산자는 엄격한 비교(**strict**)를 한다.
+    > 동등/일치 비교 연산자의 종류
+
+    | 비교 연산자 | 의미 | 사례 | 설명 | 부수 효과 | 
+    | -:- | -:- | -:- | :-- | -:- |
+    | == | 동등 비교 | x == y | x와 y의 값이 같음 | X |
+    | === | 일치 비교 | x === y | x와 y의 값과 타입이 같음 | X |
+    | != | 부동등 비교 | x != y | x와 y의 값이 다름 | X |
+    | !== | 불일치 비교 | x !== y | x와 y의 값과 타입이 다름 | X |
+
+    - 동등 비교(==) 연산자는 **좌항과 우항의 피연산자를 비교할 때 먼저 암묵적 타입 변환을 통해 타입을 일치시킨 후 같은 값인지 비교한다**. 따라서 좌항과 우항의 피연산자가 타입은 다르더라도 암묵적 타입 변환 후에 같은 값일 수 있다면 true를 반환한다.
+    ```javascript
+    // 동등 비교
+    console.log(5 == 5); // true
+
+    // 타입이 달라도 암묵적 타입 변화를 통해 타입을 일치시키면 동등하다.
+    console.log(5 == '5'); // true
+    ```
+    
+    - 동등 비교 연산자는 편리한 경우도 있지만 결과를 예측하기 어렵고 실수할 가능성이 높다.
+    ```javascript
+    // 다음에 나오는 예제는 안티 패턴이므로 이해하지 못해도 무방하다.
+    console.log('0' == ''); // false
+    console.log(0 == ''); // true
+    console.log(0 == '0'); // true
+    console.log(false == 'false'); // false
+    console.log(false == '0'); // true
+    console.log(false == null); // false
+    console.log(false == undefined); // false
+    ```
+
+    > 안티 패턴(anti-patterin): 가독성, 성능, 유지보수 등에 부정적인 영향을 줄 수 있어 지양하는 패턴
+
+    - 일치 비교(===) 연산자는 **좌항과 우항의 피연산자가 타입도 같고 값도 같은 경우에 한하여 true를 반환한다**. 일치 비교 연산자는 동등 비교 연산자와 다르게 좌항과 우항의 피연산자를 비교할 때 암묵적 타입 변환을 하지 않는다.
+    - 단 NaN은 서로 일치하지 않는 유일한 값이다.
+    ```javascript
+    // 일치 비교
+    console.log(5 === 5); // true
+    
+    // 값과 타입이 모두 같은 경우나 true를 반환한다. 
+    console.log(5 === '5'); // false
+
+    // NaN은 자신과 일치하지 않는 유일한 값이다.
+    console.log(NaN === NaN); // fasle
+    ```
+
+    - Number.isNaN 함수는 지정한 값이 NaN인지 확인하고 그 결과를 불리언 값으로 반환한다.
+    ```javascript
+    console.log(Number.isNaN(NaN)); // true
+    console.log(Number.isNaN(10)); // false
+    console.log(Number.isNaN(1 + undefined)); // true    
+    ```
+
+    - JavaScript에서는 양의 0과 음의 0이 있는데 이들을 비교하면 true를 반환한다.
+    ```javascript
+    console.log(0 === -0);
+    console.log(0 === 0);
+    ```

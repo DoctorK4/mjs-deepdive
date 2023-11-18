@@ -259,7 +259,7 @@ let foo = let x; // Uncaught SyntaxError: Unexpected identifier 'x';
 var foo = var x; // Uncaught SyntaxError: Unexpected token 'var';
 ``` 
 
-- 변수 선언문은 '표현식이 아닌 문'이고, 할당문은 '표현식인 문'이다.
+- **변수 선언문은 '표현식이 아닌 문'**이고, **할당문은 '표현식인 문'**이다.
 ```javascript
 let x;
 
