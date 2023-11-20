@@ -510,7 +510,7 @@ console.log(a, b, c); // 0 0 0
     console.log(false == undefined); // false
     ```
 
-    > 안티 패턴(anti-patterin): 가독성, 성능, 유지보수 등에 부정적인 영향을 줄 수 있어 지양하는 패턴
+    > 안티 패턴(anti-pattern): 가독성, 성능, 유지보수 등에 부정적인 영향을 줄 수 있어 사용을 지양하는 패턴
 
     - 일치 비교(===) 연산자는 **좌항과 우항의 피연산자가 타입도 같고 값도 같은 경우에 한하여 true를 반환한다**. 일치 비교 연산자는 동등 비교 연산자와 다르게 좌항과 우항의 피연산자를 비교할 때 암묵적 타입 변환을 하지 않는다.
     - 단 NaN은 서로 일치하지 않는 유일한 값이다.
@@ -534,6 +534,91 @@ console.log(a, b, c); // 0 0 0
 
     - JavaScript에서는 양의 0과 음의 0이 있는데 이들을 비교하면 true를 반환한다.
     ```javascript
+    // 양의 0과 음의 0의 비교, 일치 비교/동등 비교 모두 결과는 true다.
     console.log(0 === -0); // true
     console.log(0 === 0); // true
     ```
+
+    - 양의 0과 음의 0, NaN과 NaN의 비교를 정확히 하기 위해서는 Object.is 메서드를 사용한다.
+    ```javascript
+    // Object.is 메서드는 ES6 버전에서 도입된 정적 메서드이다.
+    // 인수로 비교할 값들을 들어간다.
+    console.log(Object.is(-0, 0)); // false
+    console.log(Object.is(NaN, NaN)); // true
+    ```
+
+    - 부동등 비교 연산자(!=)와 불일치 비교 연산자(!==)는 각각 동등 비교(==) 연산자와 일치 비교(===) 연산자의 반대 개념이다.
+    ```javascript
+    // 부동등 비교 연산자는 두 피연산자들의 값이 다르면 true를 반환하고 타입 상관없이 값이 같으면 false를 반환함
+    console.log(5 != 8); // true
+    console.log(5 != 5); // false
+    console.log(5 != '5'); // false
+    
+    // 불일치 비교 연산자에서는 두 피연산자들의 값 또는 타입이 다르면 true을 반환하고 반대의 경우 false를 반환함
+    console.log(5 !== 8); // true
+    console.log(5 !== 5); // false
+    console.log(5 !== '5'); // true
+    ```
+
+- 대소 관계 비교 연산자
+    - 대소 관계 비교 연산자는 **피연산자의 크기를 비교하여 불리언 값을 반환한다**.
+    > 대소 관계 비교 연산자의 종류
+
+    | 대소 관계 비교 연산자 | 예제 | 설명 | 부수 효과 | 
+    | -:- | -:- | -:- | -:- |
+    | > | x > y | x가 y보다 크다. | X |
+    | < | x < y | x가 y보다 작다. | X |
+    | >= | x >= y | x가 y보다 크거나 같다. | X |
+    | <= | x <=> y | x가 y보다 작거나 같다. | X |
+
+    ```javascript
+    console.log(5 > 0); // true
+    console.log(5 > 5); // false
+    console.log(5 >= 5); // true
+    console.log(5 <= 5); // true
+    ```
+
+### 7-4 삼항 조건 연산자
+- 삼항 조건 연산자(ternary operator): **조건식의 평가 결과에 따라 반환할 값을 결정하는 연산자**. JavaScript의 유일한 삼항 연산자이며, 부수 효과는 없다.
+- 삼항 조건 연산자는 첫 번째 피연산자가 true로 평가되면 두 번째 피연산자를 반환하고, 첫 번째 피연산자가 false로 평가되면 세 번째 피연산자를 반환한다. 즉, 삼항 조건 연산자는 **두 번째 피연산자 또는 세 번째 피연산자로 평가되는**(**값이 반환되는**) **표현식**이라고 볼 수 있다.
+```javascript
+/*
+조건식 ? 조건식이 true일 때 반환할 값 : 조건식이 false일 때 반환할 값
+*/
+let score = 90;
+let result = score >= 60 ? 'pass' : 'fail';
+// 조건식에서 score 변수에 저장된 값이 60점보다 높거나 같을 경우 'pass'가 출력되고
+// 아닐 경우 'fail'이 출력된다.
+// 현재 score 변수에 저장된 값이 90점이므로 'pass'가 출력될 것이다.
+
+console.log(score); // 
+```
+- 첫 번째 피연산자 => 조건식(불리언 타입의 값으로 평가될 표현식)
+- 조건식의 평가 결과가 불리언 값이 아닐 경우 불리언 값으로 암묵적 타입 변환된다.
+```javascript
+let x = 2;
+
+// 2 % 2는 0이고 0은 false로 암묵적 타입 변환된다.
+let result = x % 2 ? '홀수' : '짝수';
+
+console.log(result); // 짝수
+```
+
+- 삼항 조건 연산자의 첫 번째 피연산자가 조건식이기 때문에 if...else문으로 바꿀 수 있지만 삼항 조건 연산자와 달리 if...else문은 값처럼 사용할 수 없다.
+```javascript
+let x = 10;
+
+// if...else 문은 표현식이 아닌 문이다. 따라서 값처럼 사용할 수 없다.
+let result = if ( x % 2 ) { result = '홀수'; } else { result = '짝수'; };
+console.log(result);
+// SyntaxError: Unexpected token 'if'
+
+let result;
+
+if ( x % 2 ) result = '홀수';
+else  result = '짝수';
+
+console.log(result); // 짝수
+```
+
+### 7-5 논리 연산자

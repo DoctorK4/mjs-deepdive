@@ -274,3 +274,5 @@ console.log(foo); // 100
 ```javascript
 function add(a, b) {return a+b;} // undefined
 ```
+
+- 조건문인 if...else 문은 '표현식이 아닌 문'에 해당한다.
