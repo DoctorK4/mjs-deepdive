@@ -581,6 +581,7 @@ console.log(a, b, c); // 0 0 0
 ### 7-4 삼항 조건 연산자
 - 삼항 조건 연산자(ternary operator): **조건식의 평가 결과에 따라 반환할 값을 결정하는 연산자**. JavaScript의 유일한 삼항 연산자이며, 부수 효과는 없다.
 - 삼항 조건 연산자는 첫 번째 피연산자가 true로 평가되면 두 번째 피연산자를 반환하고, 첫 번째 피연산자가 false로 평가되면 세 번째 피연산자를 반환한다. 즉, 삼항 조건 연산자는 **두 번째 피연산자 또는 세 번째 피연산자로 평가되는**(**값이 반환되는**) **표현식**이라고 볼 수 있다.
+- 삼항 조건 연산자를 사용하는 표현식은 값으로 사용할 수 있는 표현식인 문이다.
 ```javascript
 /*
 조건식 ? 조건식이 true일 때 반환할 값 : 조건식이 false일 때 반환할 값
@@ -630,3 +631,126 @@ console.log(result); // 짝수
 | &#124; &#124; | 논리합(OR) | X |
 | && | 논리곱(AND) | X |
 | ! | 부정(NOT) | X |
+
+- 논리 부정(!) 연산자는 언제나 불리언 값을 반환한다. 단, 피연산자가 반드시 불리언 값일 필요는 없다. 만약 피연산자가 불리언 값이 아니면 불리언 타입으로 암묵적 타입 변환된다.
+- 논리합(||) 또는 논리곱(&&) 연산자 표현식의 평가 결과는 불리언 값이 아닐 수도 있다. 논리합 또는 논리곱 연산자 표현식은 언제나 2개의 피연산자 중 어느 한쪽으로 평가된다. 
+
+```javascript
+// 논리합(||) 연산자: 두 개의 피연산자 중 하나만 true로 평가되어도 true를 반환한다.
+// 논리합 연산자는 좌항에서 우항으로 평가가 진행된다.
+console.log(true || true); // true
+console.log(true || false); // true
+console.log(false || true); // true
+console.log(false || false); // false
+
+// 논리합 연산자에 드 모르간의 법칙 적용
+console.log(!(x || y) === (!x && !y)); // true
+console.log(!(x && y) === (!x || !y)); // true
+
+// 논리곱(&&) 연산자: 두 개의 피연산자가 모두 true로 평가될 때 true를 반환한다.
+// 논리곱 연산자는 논리합 연산자처럼 동일하게 작동한다.
+console.log(true && true); // true
+console.log(true && false); // false
+console.log(false && true); // false
+console.log(false && false); // false
+
+// 논리합 또는 논리곱 연산자는 반드시 불리언 값을 반환하지 않는다.
+console.log('Cat' || 'Dog'); // Cat
+console.log('Cat' && 'Dog'); // Dog
+
+// 논리 부정(!) 연산자
+console.log(!true); // 
+console.log(!false); //
+
+// 논리 부정 연산자의 암묵적 타입 변환
+console.log(!0); //
+console.log(!'Hello'); //
+```
+
+### 7-6 쉼표 연산자
+- 쉼표 연산자(comma operator): **왼쪽 피연산자부터 차례대로 피연산자를 평가하고 마지막 피연산자의 평가가 끝나면 마지막 피연산자의 평가 결과를 반환하는 연산자**
+```javascript
+let x, y, z;
+console.log(x = ((y=2),(z=3))); // 3
+``` 
+
+### 7-7 그룹 연산자
+- 그룹 연산자(group operator): **소괄호('()')로 피연산자를 감싸는 연산자**.
+- 그룹 연산자는 자신의 피연산자인 표현식을 가장 먼저 평가한다. 따라서 그룹 연산자를 사용하면 연산자의 우선순위를 조정할 수 있다. 그룹 연산자는 **연산자 우선순위가 가장 높다**.
+```javascript
+// 왼쪽에서 오른쪽으로 사칙연산 순서에 맞게 계산
+console.log(10 * 6 - 3); // 57
+
+// 그룹 연산자를 사용하여 우선순위를 조절
+// 그룹 연산자로 감싼 표현식을 먼저 연산한 후에
+// 나머지 표현식을 왼쪽에서 오른쪽으로 계산
+console.log(10 * (6 - 3)); // 30
+```
+
+### 7-8 typeof 연산자
+- typeof 연산자: **피연산자의 데이터 타입을 문자열로 반환하는 연산자**
+- typeof 연산자는 "string", "number", "boolean", "undefined", "symbol", "object", "function" 중 하나를 반환한다.
+- 함수는 객체의 한 종류이지만 typeof 연산자를 통해서는 "function"을 반환한다.
+- 그래서 typeof 연산자가 반환하는 문자열은 7개의 데이터 타입과 정확히 일치하지는 않는다.
+- typeof 연산자로 null 값을 연산하면 "null"이 아닌 "object"를 반환한다.
+```javascript
+console.log(typeof ''); // string
+console.log(typeof 1); // number
+console.log(typeof NaN); // number
+console.log(typeof true); // boolean
+console.log(typeof undefined); // undefined
+console.log(typeof Symbol()); // symbol
+console.log(typeof null); // object
+console.log(typeof []); // object
+console.log(typeof {}); // object
+console.log(typeof new Date()); // object
+console.log(typeof /test/gi); // object
+console.log(typeof function () {}); // function
+
+// 값이 null 타입인지 확인할 때는 일치 비교 연산자를 사용한다.
+let foo = null;
+console.log(typeof foo === null); //
+
+```
+
+- 선언하지 않은 식별자를 typeof 연산자로 연산하면 ReferenceError가 발생하지 않고 undefined를 반환한다.
+```javascript
+// something 식별자를 선언한 적이 없다.
+console.log(typeof something); // undefined
+```
+
+### 7-9 지수 연산자
+- 지수 연산자(exponentation operator): **좌항의 피연산자를 밑(base)으로, 우항의 피연산자를 지수(exponent)로 거듭 제곱하여 숫자 값을 반환하는 연산자**. ES7 버전에 도입된 연산자이다.
+- ES7 버전 이전까지는 Math.pow 메서드를 사용해서 거듭 제곱을 표현했다.
+```javascript
+// 지수 연산자
+console.log(2 ** 2); // 4
+console.log(2 ** 2.5); // 5.65685424949238
+console.log(2 ** 0); // 1
+console.log(2 ** -2); // 0.25
+
+// Math.pow 메서드
+// 첫 번째 인수에는 밑, 두 번째 인수에는 지수에 해당한다.
+console.log(Math.pow(2, 2)); // 4
+console.log(Math.pow(2, 2.5)); // 5.65685424949238
+console.log(Math.pow(2, 0)); // 1
+console.log(Math.pow(2, -2)); // 0.25
+```
+
+- 지수 연산자의 결합 순서는 우항에서 좌항이다(**우결합성**)
+```javascript
+console.log(2 ** (3 ** 2)); // 512 
+console.log(Math.pow(2, Math.pow(3, 2))); // 512
+```
+
+- 다른 산술 연산자와 마찬가지로 할당 연산자와 함께 사용할 수 있다.
+```javascript
+let num = 5;
+num **= 2;
+console.log(num); // 5
+```
+
+- 지수 연산자는 이항 연산자 중에서 우선순위가 가장 높다.
+```javascript
+console.log(2 * 5 ** 2); // 50
+```
