@@ -13,6 +13,7 @@
 ### 6-1 숫자 타입
 - JavaScript는 C, C++, Java처럼 int, float, double 같은 숫자 타입이 아니라 숫자 타입이 number 타입으로 통일되어 있다.
 - JavaScript는 2진수, 8진수, 16진수를 표현하기 위한 데이터 타입(타입)을 제공하지 않기 때문에 이들 값을 참조하면 모두 10진수로 해석된다.
+
 ```javascript
 let integer = 10; // 정수(양의 정수)
 let double = 10.12; // 실수
@@ -32,30 +33,34 @@ console.log(binary === hex); // true
 ``` 
 
 - JavaScript의 숫자 타입은 모두 실수로 처리된다.
+
 ```javascript
 // 다음에 나오는 숫자 타입은 모두 실수로 처리된다.
 console.log(1 === 1.0); // true
 console.log(4 / 2); // 2
 console.log(3 / 2); // 1.5
 ```
+
 - JavaScript의 숫자 타입은 다음의 세 가지 특별한 값도 표현할 수 있다.
     - Infinity: 양의 무한대
-    - -Infinity: 음의 무한대
+    - &#45; Infinity: 음의 무한대
     - NaN: 산술 연산 불가(**not-a-number의 약자**)
-    (JavaScript 엔진은 NAN 표기를 제외한 값을 식별자로 해석해서 에러를 발생시킨다.)
-```javascript
-// 숫자 타입의 세 가지 특별한 값
-console.log(10 / 0); // Infinity
-console.log(10 / -0); // -Infinity
-console.log(1 * 'String'); // NaN
+    > JavaScript 엔진은 NaN 표기를 제외한 값을 식별자로 해석해서 에러를 발생시킨다.
 
-// JavaScript는 대소문자를 구별한다.
-let x = nan; // ReferenceError: nan is not defined
-```
+    ```javascript
+    // 숫자 타입의 세 가지 특별한 값
+    console.log(10 / 0); // Infinity
+    console.log(10 / -0); // -Infinity
+    console.log(1 * 'String'); // NaN
+
+    // JavaScript는 대소문자를 구별한다.
+    let x = nan; // ReferenceError: nan is not defined
+    ```
 
 ### 6-2 문자열 타입
 - 문자열 타입(string type)은 0개 이상의 16비트 유니코드 문자(**UTF-16**)의 집합을 표현할 수 있는 데이터 타입(타입)이다.
 - 문자열은 작은따옴표(''), 큰따옴표(""), 백틱(``)으로 텍스트를 감싼다. 백틱 기능은 ES6 버전에서 추가되었다.
+
 ```javascript
 // 문자열 타입
 let string;
@@ -72,6 +77,7 @@ string = `문자열`; // 백틱(ES6 버전에서 추가됨)
 - **템플릿 리터럴**(**template literal**): 표현식을 사용할 수 있는 문자열 표기법. 멀티라인 문자열(multi-line string), 표현식 삽입(expression interpolation), 태그드 템플릿(tagged template) 등 문자열 처리 기능을 제공한다. 템플릿 리터럴은 소스코드를 실행하면서(런타임) 일반 문자열로 전환되어 처리된다.
 
 - 템플릿 리터럴은 백틱(``)을 사용해 표현한다.
+
 ```javascript
 let number = 2023;
 let template = `{number}년 11월 11일`;
@@ -80,6 +86,7 @@ console.log(template); // 2023년 11월 11일
 ```
 
 -멀티 라인 문자열: JavaScript에서는 일반 문자열은 줄바꿈(개행)을 인식하지 않는다. 일반 문자열 내에서 줄바꿈 등의 공백(white space)을 표현하려면 **백슬래시**(\)로 시작하는 이스케이프 시퀀스(escape sequence)를 사용해야 한다.
+
 > 이스케이프 시퀀스의 종류
 
 | 이스케이프 시퀀스 | 의미 |
@@ -94,6 +101,7 @@ console.log(template); // 2023년 11월 11일
 |\uXXXX |유니코드, 예를 들어 '\u0041'은 'A', '\uD55C'는 '한'다. |
 
 - 줄바꿈(\n)과 들여쓰기(\t)가 적용된 HTML 문자열은 다음과 같이 이스케이프 시퀀스를 사용해 작성한다.
+
 ```javascript
 let template = '<ul>\n\t<li><a href="#">Home</a></li>\n</ul>';
 
@@ -141,6 +149,7 @@ console.log(`My name is ${familyName} ${lastName}.`);
 - 템플릿 리터럴에서 표현식을 삽입하려면 ${}으로 표현식을 감싼다. 이때 **표현식의 평가 결과가 문자열이 아니더라도 문자열로 타입이 강제로 변환된다**.
 
 - 백틱이 아닌 따옴표에 표현식을 넣을 경우 문자열로 취급된다.
+
 ```javascript
 console.log('1 + 2 = ${1 + 2}'); // 1 + 2 = ${1 + 2}
 ```
@@ -153,6 +162,7 @@ console.log('1 + 2 = ${1 + 2}'); // 1 + 2 = ${1 + 2}
 - undefined의 정의: **아무 값도 할당받지 않는 상태**
 - undefined의 값은 undefined가 유일하다.
 - var 키워드로 선언한 변수는 암묵적으로 undefined로 초기화된다. JavaScript 엔진이 변수 선언에 의해 확보된 메모리 공간을 처음 할당이 이뤄질 때까지 빈 상태(대부분 garbage value가 들어 있음)로 두지 않는다.
+
 ```javascript
 var something;
 console.log(something); // undefined
@@ -169,6 +179,7 @@ console.log(something); // undefined
 - null의 정의: **변수에 값이 없다는 것을 의도적으로 명시한 상태(의도적 부재/intentional absence)**
 - null 타입의 유일한 값은 null이 유일하다.
 - 변수에 null을 할당한다는 것은 변수가 이전에 참조하던 값을 더 이상 참조하지 않겠다는 의미다.
+
 ```javascript
 let second = 'Yeonjun';
 
@@ -180,6 +191,7 @@ second = null;
 - 변수에 null을 할당하게 되면 이전에 할당되어 있던 값에 대한 참조(메모리 공간에 접근)를 명시적으로 제거하는 것을 의미한다. 참조가 제거된 메모리 공간은 JavaScript 엔진이 가비지 콜렉션을 수행할 것이다.
 
 - 함수가 유효한 값을 반환할 수 없는 경우 명시적으로 null을 반환하기도 하다. 
+
 ```html
 <!DOCTYPE html>
 <html>
@@ -203,6 +215,7 @@ second = null;
 - 심벌 타입의 값은 다른 값과 중복이 불가능한 유일무이한 값이다. 그래서 이름이 충돌할 위험이 없는 객체의 유일한 프로퍼티 키를 만들기 위해 사용한다.
 - 본래 원시 타입들은 리터럴을 통해 값을 생성하지만, 심벌 타입만 유일하게 Symbol 함수를 통해 값을 생성한다.
 - Symbol 함수를 통해 생성하는 심벌 값은 외부에 노출되지 않는다.
+
 ```javascript
 // 심벌 값 생성
 let first = Symbol('key');
@@ -236,6 +249,7 @@ console.log(state[first]); // value
     - typeof 연산자를 이용하면 피연산자의 데이터 타입을 문자열로 반환할 수 있다.
     - typeof 연산자를 이용해서 반환되는 데이터 타입은 변수에 할당한 값의 데이터 타입을 반환한다.
     - JavaScript는 값을 할당하는 시점에서 데이터 타입이 동적으로 결정된다(**타입 추론**/**type inference**)
+
     ```javascript
     let foo;
     console.log(typeof foo); // undefined
@@ -289,7 +303,7 @@ console.log(state[first]); // value
 > [참고_링크5: IEEE_754](https://ko.wikipedia.org/wiki/IEEE_754)
 
 - 산술 연산자는 피연산자의 갯수에 따라 이항 산술 연산자와 단항 산술 연산자로 구분할 수 있다.
-    - 이항 산술 연산자(binary arithmetic operator): **2개의 피연산자를 산술 연산하여 숫자 값을 만드는 연산자**
+    - 이항 산술 연산자(binary arithmetic operator): **2개의 피연산자를 산술 연산하여 숫자 값을 만드는 연산자**.
 
     > 이항 산술 연산자의 종류
 
@@ -300,6 +314,7 @@ console.log(state[first]); // value
     | * | 곱셈 | X |
     | / | 나눗셈 | X |
     | % | 나머지 | X |
+
     ```javascript
     5 + 2; // 7
     5 - 2; // 3
@@ -308,7 +323,7 @@ console.log(state[first]); // value
     5 % 2; // 1
     ```
 
-    - 단항 산술 연산자(unary arithmetic operator): **1개의 피연산자를 산술 연산하여 숫자 값을 만드는 연산자**
+    - 단항 산술 연산자(unary arithmetic operator): **1개의 피연산자를 산술 연산하여 숫자 값을 만드는 연산자**.
 
     > 단항 산술 연산자의 종류
 
@@ -319,7 +334,8 @@ console.log(state[first]); // value
     | + | 특별한 효과가 없다. | X |
     | - | 양수를 음수로, 음수를 양수로 반전한 값을 반환한다. | X |
 
-    - 단항 산술 연산자에서 **증가/감소 연산자는 피연산자의 값을 변경하는 부수 효과(side effect)가 있다(암묵적 할당)**
+    - 단항 산술 연산자에서 **증가/감소 연산자는 피연산자의 값을 변경하는 부수 효과(side effect)가 있다(암묵적 할당)**.
+
     ```javascript
     let a = 1;
 
@@ -335,6 +351,7 @@ console.log(state[first]); // value
     - 증가/감소 연산자는 위치에 따라 연산 과정이 달라진다.
         - 피연산자 앞에 위치한 **전위 증가/감소 연산자**(**prefix increment/decrement operator**)는 먼저 피연산자의 값을 증가/감소시킨 후, 다른 연산을 수행한다.
         - 피연산자 뒤에 위치한 **후위 증가/감소 연산자**(**postfix increment/decrement operator**)는 먼저 다른 연산을 수행한 후, 피연산자의 값을 증가/감소시킨다.
+
     ```javascript
     let foo = 5;
     let result;
@@ -357,6 +374,7 @@ console.log(state[first]); // value
     ```
 
     - &#43; 단항 연산자는 피연산자에 특별한 효과를 주지 않지만 숫자 타입이 아닌 피연산자에 적용할 경우 해당 피연산자를 숫자 타입으로 변환하여 반환한다.
+
     ```javascript
     let test = '1';
     // 문자열을 숫자로 타입 변환한다.
@@ -383,6 +401,7 @@ console.log(state[first]); // value
     ```
 
     - &#45; 단항 연산자는 피연산자의 부호를 반전한 값을 반환한다. + 단항 연산자와 마찬가지로 숫자 타입이 아닌 피연산자에 적용할 경우 해당 피연산자를 숫자 타입으로 변환하여 반환한다.
+
     ```javascript
     // 부호를 반전한다.
     console.log(-(-10)); // 10
@@ -398,6 +417,7 @@ console.log(state[first]); // value
     ```
 
     - 1개 이상의 피연산자가 문자열일 경우 + 연산자가 문자열 연결 연산자로 동작한다. + 연산자가 아닌 이항 연산자나 피연산자가 모두 숫자 타입일 경우 산술 연산자로 동작한다.
+
     ```javascript
     // 문자열 연결 연산자
     console.log('1' + 2); // "12"
@@ -419,7 +439,7 @@ console.log(state[first]); // value
     - JavaScript 엔진은 개발자의 의도와는 상관없이 암묵적으로 타입을 자동으로 변환한다. 이것을 **암묵적 타입 변환**(**implicit coercion**) 또는 **타입 강제 변환**(**type coercion**)이라고 한다. 
 
 ### 7-2 할당 연산자
-- 할당 연산자(assignment operator): **우항에 있는 피연산자의 평가 결과(값)를 좌항에 있는 변수에 할당하는 연산자**
+- 할당 연산자(assignment operator): **우항에 있는 피연산자의 평가 결과(값)를 좌항에 있는 변수에 할당하는 연산자**.
 - 할당 연산자는 좌항의 변수에 값을 할당하므로 변수 값이 변하는 부수 효과가 있다.
 
 > 할당 연산자의 종류
@@ -463,6 +483,7 @@ console.log(str); // "My name is Yeonjun"
 ```
 
 - 할당문은 값으로 평가되는 표현식인 문으로서 할당된 값으로 평가된다.
+
 ```javascript
 let a;
 let b;
@@ -494,6 +515,7 @@ console.log(a, b, c); // 0 0 0
     | !== | 불일치 비교 | x !== y | x와 y의 값과 타입이 다름 | X |
 
     - 동등 비교(==) 연산자는 **좌항과 우항의 피연산자를 비교할 때 먼저 암묵적 타입 변환을 통해 타입을 일치시킨 후 같은 값인지 비교한다**. 따라서 좌항과 우항의 피연산자가 타입은 다르더라도 암묵적 타입 변환 후에 같은 값일 수 있다면 true를 반환한다.
+
     ```javascript
     // 동등 비교
     console.log(5 == 5); // true
@@ -503,6 +525,7 @@ console.log(a, b, c); // 0 0 0
     ```
     
     - 동등 비교 연산자는 편리한 경우도 있지만 결과를 예측하기 어렵고 실수할 가능성이 높다.
+
     ```javascript
     // 다음에 나오는 예제는 안티 패턴이므로 이해하지 못해도 무방하다.
     console.log('0' == ''); // false
@@ -517,7 +540,8 @@ console.log(a, b, c); // 0 0 0
     > 안티 패턴(anti-pattern): 가독성, 성능, 유지보수 등에 부정적인 영향을 줄 수 있어 사용을 지양하는 패턴
 
     - 일치 비교(===) 연산자는 **좌항과 우항의 피연산자가 타입도 같고 값도 같은 경우에 한하여 true를 반환한다**. 일치 비교 연산자는 동등 비교 연산자와 다르게 좌항과 우항의 피연산자를 비교할 때 암묵적 타입 변환을 하지 않는다.
-    - 단 NaN은 서로 일치하지 않는 유일한 값이다.
+    - 단, NaN은 서로 일치하지 않는 유일한 값이다.
+
     ```javascript
     // 일치 비교
     console.log(5 === 5); // true
@@ -526,7 +550,7 @@ console.log(a, b, c); // 0 0 0
     console.log(5 === '5'); // false
 
     // NaN은 자신과 일치하지 않는 유일한 값이다.
-    console.log(NaN === NaN); // fasle
+    console.log(NaN === NaN); // false
     ```
 
     - Number.isNaN 함수는 지정한 값이 NaN인지 확인하고 그 결과를 불리언 값으로 반환한다.
@@ -574,7 +598,7 @@ console.log(a, b, c); // 0 0 0
     | > | x > y | x가 y보다 크다. | X |
     | < | x < y | x가 y보다 작다. | X |
     | >= | x >= y | x가 y보다 크거나 같다. | X |
-    | <= | x <=> y | x가 y보다 작거나 같다. | X |
+    | <= | x <= y | x가 y보다 작거나 같다. | X |
 
     ```javascript
     console.log(5 > 0); // true
@@ -597,7 +621,7 @@ let result = score >= 60 ? 'pass' : 'fail';
 // 아닐 경우 'fail'이 출력된다.
 // 현재 score 변수에 저장된 값이 90점이므로 'pass'가 출력될 것이다.
 
-console.log(score); // 
+console.log(result); // pass 
 ```
 - 첫 번째 피연산자 => 조건식(불리언 타입의 값으로 평가될 표현식)
 - 조건식의 평가 결과가 불리언 값이 아닐 경우 불리언 값으로 암묵적 타입 변환된다.
@@ -665,12 +689,16 @@ console.log('Cat' || 'Dog'); // Cat
 console.log('Cat' && 'Dog'); // Dog
 
 // 논리 부정(!) 연산자
-console.log(!true); // 
-console.log(!false); //
+console.log(!true); // false
+console.log(!false); // true
 
 // 논리 부정 연산자의 암묵적 타입 변환
-console.log(!0); //
-console.log(!'Hello'); //
+console.log(!0); // 0이 falsy한 값이므로 true가 반환됨
+console.log(!'Hello');
+/*
+falsy(null, undefined, 0, '', NaN)를 제외한 모든 값이 true이므로
+false가 반환됨
+*/ 
 ```
 
 ### 7-6 쉼표 연산자
@@ -710,12 +738,13 @@ console.log(typeof null); // object
 console.log(typeof []); // object
 console.log(typeof {}); // object
 console.log(typeof new Date()); // object
-console.log(typeof /test/gi); // object
+console.log(typeof /test/gi); // (정규표현식은 RegExp 생성자를 통해 생성함) object
 console.log(typeof function () {}); // function
 
 // 값이 null 타입인지 확인할 때는 일치 비교 연산자를 사용한다.
 let foo = null;
-console.log(typeof foo === null); //
+console.log(typeof foo === null); // false
+console.log(foo === null); // true
 
 ```
 
@@ -752,7 +781,7 @@ console.log(Math.pow(2, Math.pow(3, 2))); // 512
 - 다른 산술 연산자와 마찬가지로 할당 연산자와 함께 사용할 수 있다.
 ```javascript
 let num = 5;
-num **= 2;
+num **= 2; // num = num ** 2;
 console.log(num); // 5
 ```
 
@@ -768,12 +797,12 @@ console.log(2 * 5 ** 2); // 50
 
 | 연산자 | 개요 | 관련 챕터 |
 | :-: | :-: | :-: |
-| ?. | 옵셔널 체이닝 연산자(좌항의 피연산자가 null이나 undefined일 경우 undefined, 아닐 경우에는 좌항 피연산자의 프로퍼티를 참조) | 9-4-2절 "옵셔널 체이닝 연산자": 122p |
-| ?? | null 병합 연산자(좌항의 피연산자가 null이나 undefined일 경우 우항의 피연산자를 반환하고, 아닐 경우에는 좌항의 피연산자를 반환) | 9-4-3절 "null 병합 연산자": 123p |
+| ?. | 옵셔널 체이닝 연산자(**좌항의 피연산자가 null이나 undefined일 경우 undefined, 아닐 경우에는 좌항 피연산자의 프로퍼티를 참조(접근)**) | 9-4-2절 "옵셔널 체이닝 연산자": 122p |
+| ?? | null 병합 연산자(**좌항의 피연산자가 null이나 undefined일 경우 우항의 피연산자를 반환하고, 아닐 경우에는 좌항의 피연산자를 반환**) | 9-4-3절 "null 병합 연산자": 123p |
 | delete | 프로퍼티 삭제 | 10-8절 "프로퍼티 삭제": 133p |
 | new | 생성자 함수를 호출할 때 사용하여 인스턴스를 생성 | 17-2-6절 "new 연산자": 245p |
 | instanceof | 좌항의 객체가 우항의 생성자 함수와 연결된 인스턴스인지 판별  | 19-10절 "instanceof 연산자": 296p |
-| in | 프로퍼티 존재 확인(좌항의 피연산자에는 프로퍼티 값, 우항의 피연산자에는 객체 식별자가 들어감) | 19-13-1절 "in 연산자": 306p |
+| in | 프로퍼티 존재 확인(**좌항의 피연산자에는 프로퍼티 값, 우항의 피연산자에는 객체 식별자가 들어감**) | 19-13-1절 "in 연산자": 306p |
 
 ### 7-11 연산자의 부수 효과
 - 대부분의 연산자는 다른 코드에 영향을 주지 않지만 일부 연산자는 다른 코드에 영향을 주는 부수 효과가 있다.
@@ -800,7 +829,7 @@ console.log(obj); // {}
 ```
 
 ### 7-12 연산자 우선순위
-- 연산자 우선순위: **여러 개의 연산자로 이뤄진 문이 실행될 때 연산자가 실행되는 순서**
+- 연산자 우선순위: **여러 개의 연산자로 이뤄진 문이 실행될 때 연산자가 실행되는 순서**.
 > 연산자 우선순위
 
 | 우선순위 | 연산자 |
