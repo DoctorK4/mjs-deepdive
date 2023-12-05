@@ -14,7 +14,7 @@
 // 이 함수는 괜찮은걸까?
 function changeName(obj) {
   obj.name = 'Bob';
-  console.log(obj);
+  return obj;
 }
 ```
 
