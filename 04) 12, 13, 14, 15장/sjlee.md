@@ -17,6 +17,12 @@ function changeName(obj) {
   return obj;
 }
 ```
+```javascript
+// 이 함수는 괜찮은걸까?
+function changeName(obj) {
+  return {...obj, name:'Bob'};
+}
+```
 
 ### 함수형 프로그래밍이 등장한 이유는?
 
