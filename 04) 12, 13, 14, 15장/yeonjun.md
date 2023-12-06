@@ -1,7 +1,7 @@
 ## 12. 함수
 
 ```javascript
-// Q1. 아래 코드는 함수 선언식인가?
+// Q1. 아래 코드는 함수 선언문인가?
 (function test(x, y) {return x + y});
 
 // Q2. 아래 코드에서 에러가 발생하는 원인이 무엇인가?
@@ -14,7 +14,7 @@ console.log(add(2)); // Uncaught ReferenceError: add is not defined
 - Q3. 함수 표현식에 적용되는 호이스팅은 변수 호이스팅인가?
 그 이유는 무엇인가?
 
-- Q4. JavaScript 함수에 들어갈 수 있는 최대 갯수와 이상적인 매개변수의 갯수는?
+- Q4. JavaScript 함수에 들어갈 수 있는 매개변수의 최대 갯수와 이상적인 갯수는?
 
 - Q5. 콜백 함수, 중첩 함수의 공통점과 차이점은 무엇인지 얘기하시오.
 
