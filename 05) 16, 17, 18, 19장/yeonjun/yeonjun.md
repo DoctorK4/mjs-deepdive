@@ -384,8 +384,6 @@ console.log(sum(1, 2, 3, 4, 5)); // 15
 
 ### 19-3 프로토타입 객체
     
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/a769b14f-cf3c-49f5-9306-d4d3e6e4227f/94300f44-2503-4e99-9075-95713e92a80b/Untitled.png)
-
 - **`프로토타입(prototype)`** : 프로토타입 객체 또는 프로토타입은 어떤 객체의 상위(부모) 객체 역할을 하는 객체로서 다른 객체에 공유 프로퍼티(메서드 포함)를 제공한다.
 
 - 프로토타입을 상속받은 하위(자식) 객체는 상위 객체의 프로퍼티를 자신의 프로퍼티처럼 자유롭게 사용할 수 있다.
@@ -423,10 +421,8 @@ Object.setPrototypeOf(obj, parent); // {}
 
 | 구분 | 소유 | 값 | 사용 주체 | 사용 목적 |
 | --- | --- | --- | --- | --- |
-| __proto__ 접근자
-프로퍼티 | 모든 객체 | 프로토타입의 참조 | 모든 객체 | 객체가 자신의 프로토타입에 접근 또는 교체하기 위해 사용 |
-| prototype
-프로퍼티 | constructor | 프로토타입의 참조 | 생성자 함수 | 생성자 함수가 자신이 생성할 객체(인스턴스)의 프로토타입을 할당하기 위해 사용 |
+| __proto__ 접근자 프로퍼티 | 모든 객체 | 프로토타입의 참조 | 모든 객체 | 객체가 자신의 프로토타입에 접근 또는 교체하기 위해 사용 |
+| prototype 프로퍼티 | constructor | 프로토타입의 참조 | 생성자 함수 | 생성자 함수가 자신이 생성할 객체(인스턴스)의 프로토타입을 할당하기 위해 사용 |
 
 - __proto__ 접근자 프로퍼티와 prototype 프로퍼티는 프로퍼티를 사용하는 주체가 다를 뿐 동일한 프로토타입을 가리킨다.
 
@@ -435,5 +431,3 @@ Object.setPrototypeOf(obj, parent); // {}
 - non-constructor에 속하는 화살표 함수와 ES6 메서드 축약 표현은 prototype 프로퍼티를 소유하지 않아서 프로토타입이 생성하지 않는다.
 
 - 프로토타입의 constructor 프로퍼티는 prototype 프로퍼티로 자신을 참조하고 있는 생성자 함수를 가리킨다. 생성자 함수에 생성된 인스턴스는 프로토타입의 constructor 프로퍼티에 의해 생성자 함수와 연결된다.
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/a769b14f-cf3c-49f5-9306-d4d3e6e4227f/cb4da129-6a78-4c75-890d-6628be50502c/Untitled.png)
