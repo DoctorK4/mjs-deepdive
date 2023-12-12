@@ -9,10 +9,10 @@
 > 참고 자료
 
 #### 내부 슬롯
-<img src="./image.png", height="200px", width="200px">
+![내부 슬롯](image.png){: width="200" height="200"}
 
 #### 내부 메서드
-<img src="./image-1.png", height="200px", width="200px">
+![내부 메서드](image-1.png){: width="200" height="200"}
 
 ## 17. 생성자 함수에 의한 객체 생성
 
