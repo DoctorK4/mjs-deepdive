@@ -250,5 +250,3 @@ Tree.prototype = {
 
 [3] __proto__ .prototype Object.getPrototypeOf()의 차이점은?
 ```
-
-[1] 사용목적이 다르다. .prototype의 경우 생성자 함수가 자신이 앞으로 생성할 인스턴스의 프로토타입을 할당하기 위해 사용하는 것이고, getPrototypeOf와 \_\_proto\_\_는 현재 객체의 prototype을 가져오는 것이며, \_\_proto\_\_는 교체도 가능하지만, 비표준이다.
