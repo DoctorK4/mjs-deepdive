@@ -151,6 +151,34 @@ console.log(y); // ReferenceError: y is not defined
 
 
 ## 21. 빌트인 객체
+> Q1. 전역 객체의 특징은?
+> Q2.
+
+```javascript
+        
+        var x = 10;
+
+        function foo() {
+            // 선언하지 않은 식별자에 값을 할당
+            test = 40.5; // window.test = 40.5;
+            console.log(x + test);
+        }
+
+        foo(); // 50.5
+
+        console.log(window.x); // 10
+        console.log(window.test); // 40.5
+
+        delete x; // 
+        delete test; // 
+
+        console.log(window.x); // 
+        console.log(window.test); // 다음 코드에서 delete 연산자를 사용하면  어떤 값이 찍히나?
+
+```
+ 
+
+
 - 자바스크립트 객체의 분류
     - 표준 빌트인 객체(standard built-in objects/native objects/global objects):
     JavaScript의 표준인 ECMAScript 사양에 정의된 객체를 말하며, 애플리케이션 전역의 공통 기능을 제공한다. 표준 빌트인 객체는 JavaScript 실행 환경(브라우저 또는 Node.js)과 상관없이 언제 어디서든 사용할 수 있으며, 전역 객체의 프로퍼티로서 제공한다.
