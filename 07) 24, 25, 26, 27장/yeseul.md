@@ -29,6 +29,7 @@ Q. 클로저 사용의 장점
 # 25장 class
 
 Q. class 메서드 3가지
+
 <details>
 
 <summary>A</summary> 
@@ -41,7 +42,7 @@ Q. class 메서드 3가지
 
 Q. class와 생성자 함수의 차이
 
-<>
+<details>
 
 <summary>A</summary> 
 
@@ -54,6 +55,8 @@ Q. class와 생성자 함수의 차이
 4. 클래스는 extends와 super 키워드 제공
 
 5. 클래스는 TDZ 영향을 받아 호이스팅이 되지 않는 것처럼 동작
+
+</details>
 
 # 26장 ES6 함수의 추가 기능
 
@@ -75,7 +78,7 @@ Q. 매개변수 이름 앞에 세개의 점 ...을 붙여 함수에 전달된 �
 
 Rest 파라미터
 
-<details>
+</details>
 
 # 27 배열
 
@@ -126,7 +129,7 @@ Q. delete 연산자는 length 프로퍼티에 영향을 주지 않아 희소 배
 
 <summary>A</summary> 
 
-Array.prototype.splice
+Array.prototype.splice()
 
 ```
 const arr = [1, 2, 3];
