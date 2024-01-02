@@ -36,7 +36,7 @@ Q. class 메서드 3가지
 
 1. constructor(생성자)
 2. 프로토타입 메서드
-3. 정적 메서
+3. 정적 메서드
 
 </details>
 
@@ -117,7 +117,8 @@ console.log(arr.length) // Q-2
 
 <summary>A</summary> 
 
-Q-1. [1, empty, 3] 
+Q-1. [1, empty, 3]
+
 Q-2. 3
 delete 연산자는 length 프로퍼티에 영향을 주지 않는다.
 
