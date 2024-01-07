@@ -8,6 +8,4 @@
 - [김동률](dongryul.md)
 - [이현우]()
 - [강예슬]()
-- [정연준](yeonjun.md)
-- [홍서진](seojinHong.md)
 - [이수진](sjlee.md)
