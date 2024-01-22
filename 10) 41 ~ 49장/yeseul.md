@@ -86,27 +86,24 @@ Ajax(Asynchronous JavaScript and XML)는 웹페이지의 전체 페이지를 새
 
 ### 43.3.2 XMLHttpRequest 객체의 프로퍼티와 메서드
 - XMLHttpRequest 객체의 프로토타입 프로퍼티
-
-|프로토타입 프로퍼티|설명|
-|:---|:---|
-|readyState|HTTP 요청의 현재 상태를 나타내는 정수
-1. UNSET: 0 
-=> XMLHttpRequest 객체 생성
-2. OPEND: 1 
-=> open() 메서드 실행
-3. HEADERS_RECEIVED: 2 
-=> 모든 요청에 대한 응답 도착
-4. LOADING: 3 
-=> 요청한 데이터를 처리
-5. DONE: 4 
-=> 요청한 데이터의 처리가 완료되어 응답할 준비 완료|
-|status|HTTP 요청에 대한 응답 상태(HTTP 상태 코드)를 나타내는 정수(응답 상태 코드)
-ex
-- 200 : HTTP 요청에 대한 응답 정상
-- 404 : HTTP 요청에 대한 응답 에러|
-|statusText|HTTP 요청에 대한 응답 메시지를 나타내는 문자열|
-|responseType|HTTP 응답 타입|
-|response|HTTP 요청에 대한 응답 몸체, responseType에 따라 타입이 다름|
+  - readyState: HTTP 요청의 현재 상태를 나타내는 정수
+    1. UNSET: 0 
+    => XMLHttpRequest 객체 생성
+    2. OPEND: 1 
+    => open() 메서드 실행
+    3. HEADERS_RECEIVED: 2 
+    => 모든 요청에 대한 응답 도착
+    4. LOADING: 3 
+    => 요청한 데이터를 처리
+    5. DONE: 4 
+    => 요청한 데이터의 처리가 완료되어 응답할 준비 완료
+  - status: HTTP 요청에 대한 응답 상태(HTTP 상태 코드)를 나타내는 정수(응답 상태 코드)
+    ex
+    - 200 : HTTP 요청에 대한 응답 정상
+    - 404 : HTTP 요청에 대한 응답 에러
+  - statusText: HTTP 요청에 대한 응답 메시지를 나타내는 문자열
+  - responseType: HTTP 응답 타입
+  - response: HTTP 요청에 대한 응답 몸체, responseType에 따라 타입이 다름
 
 - XMLHttpRequest 객체의 이벤트 핸들러 프로퍼티
 
