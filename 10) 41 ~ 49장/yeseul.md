@@ -86,6 +86,7 @@ Ajax(Asynchronous JavaScript and XML)는 웹페이지의 전체 페이지를 새
 
 ### 43.3.2 XMLHttpRequest 객체의 프로퍼티와 메서드
 - XMLHttpRequest 객체의 프로토타입 프로퍼티
+
 |프로토타입 프로퍼티|설명|
 |:---|:---|
 |readyState|HTTP 요청의 현재 상태를 나타내는 정수
@@ -108,6 +109,7 @@ ex
 |response|HTTP 요청에 대한 응답 몸체, responseType에 따라 타입이 다름|
 
 - XMLHttpRequest 객체의 이벤트 핸들러 프로퍼티
+
 |이벤트 핸들러 프로퍼티|설명|
 |:---|:---|
 |onreadystatechange|readyState 프로퍼티 값이 변경된 경우|
@@ -115,6 +117,7 @@ ex
 |onload|HTTP 요청 시간이 초과한 경우|
 
 - XMLHttpRequest 객체의 메서드
+
 |메서드|설명|
 |:---|:---|
 |open|HTTP 요청 초기화|
@@ -123,6 +126,7 @@ ex
 |setRequestHeader|특정 HTTP 요청 헤더의 값을 설정|
 
 - XMLHttpRequest 객체의 정적 프로퍼티
+
 |정적 프로퍼티|설명|
 |:---|:---|
 |DONE: 4|서버 응답 완료|
@@ -134,6 +138,7 @@ ex
 xhr.open(method, url[, async])
 ```
 - method: HTTP 요청 메서드를 사용해 CRUD 구현
+
 |HTTP 요청 메서드|목적|페이로드(전송되는 데이터)|
 |:---|:---|:---|
 |GET|리소스 취득|X|
@@ -160,12 +165,6 @@ Accept
 
 3. XMLHttpRequest.prototype.send 메서드로 HTTP 요청을 전송
 - GET 요청 메서드의 경우 데이터를 URL의 일부분인 쿼리 문자열로 서버에 전송
-
-Ex. 
-https://www.google.com/search?q=%EB%BD%80%EB%A1%9C%EB%A1%9C&oq=%EB%BD%80%EB%A1%9C%EB%A1%9C&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCDEwOTFqMGo5qAIAsAIA&sourceid=chrome&ie=UTF-8
-
-?부터 쿼리 문자열 시작 지점!! 
-
 - POST 요청 메서드의 경우 데이터(payload)를 요청 몸체(body)에 담아 전송
 - payload가 객체인 경우 JSONstringify  메서드를 사용하여 직렬화 한 후 전달!!
 - HTTP 요청 메서드가 GET인 경우 send 메서드에 페이로드로 전달한 인수는 무시되고 요청 몸체는 null로 설정된다. 
@@ -222,6 +221,7 @@ Q.
 
 2. 리소스에 대한 행위는 HTTP 요청 메서드로 표현
 : 리소스의 행위에 대한 정의
+
 |HTTP 요청 메서드|종류|목적|페이로드|
 |:---|:---|:---|:---|
 |GET|index/retrieve|모든/특정 리소스 취득|X|
@@ -245,6 +245,7 @@ Q.
 - Promise 생성자 함수는 resolve(성공)와 reject(실패) 함수를 인수로 가진 콜백 함수를 인수로 전달받는다.
 
 - state
+
 |프로미스 상태 정보|의미|상태 변경 조건|
 |:---|:---|:---|
 |pending|비동기 처리가 아직 수행되지 않은 대기 상태|프로미스가 생성된 직후 기본 상태|
@@ -409,7 +410,8 @@ One!
 
 ## 46.3 제너레이터 객체
 - 제너레이터 객체는 Symbol.iterator 메서드를 상속받는 이터러블이면서 value, done 프로퍼티를 갖는 이터레이터 리절트  객체를 반환하는 next 메서드를 소유하는 이터레이터이므로 Symbol.iterator 메서드를 호출해서 별도로 이터레이터를 생성할 필요가 없다.
-- 제너레이터 객체는 next 메서드를 갖는 이터레이터이지만 이터레이터에는 없는 return, throw  메서드를 갖는다. 
+- 제너레이터 객체는 next 메서드를 갖는 이터레이터이지만 이터레이터에는 없는 return, throw  메서드를 갖는다.
+
 |매서드 호출|value property|done property|
 |---|:---|---|
 |next|yeld 표현식까지 실행하고 yield된 값|false|
@@ -454,7 +456,8 @@ One!
 - finally: 에러 발생과 상관없이 반드시 한 번 실행
 
 ## 47.3 Error 객체
-- Error 생성자 함수는 에러 객체를 생성한다. Error 생성자 함수에는 에러를 상세히 설명하는 에러 메시지를 인수로 전달 가능하다. 
+- Error 생성자 함수는 에러 객체를 생성한다. Error 생성자 함수에는 에러를 상세히 설명하는 에러 메시지를 인수로 전달 가능하다.
+
 |생성자 함수|인스턴스|
 |:---|:---|
 |Error|일반적인 에러 객체|
